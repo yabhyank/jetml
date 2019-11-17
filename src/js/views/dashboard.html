@@ -1,0 +1,54 @@
+<!--
+ Copyright (c) 2014, 2019, Oracle and/or its affiliates.
+ The Universal Permissive License (UPL), Version 1.0
+ -->
+<div class="oj-hybrid-padding">
+  <h1>Machine Learning</h1>
+  <div>
+      
+  </div>
+  
+  <div id="form1">
+        <oj-label for="inputnumber-id">Input number for prediction</oj-label> 
+        <oj-input-number id="inputnumber-id"
+                         max= "[[max]]"
+                         min= "[[min]]"
+                         step= "[[step]]" 
+                         value="{{currentValue}}">
+        </oj-input-number>
+        <span>Current value is: </span>
+        <span id="curr-value" data-bind="text: currentValue"></span>
+		<hr/>
+        <span>Click the button to see predicted value</span>
+        <br>
+        <div id="button-container">
+          <oj-button id="buttonId1" 
+              data-bind="click: setSeriesValue">
+              Display 
+          </oj-button>
+		  <hr/>
+         
+        </div>
+	</div>
+	
+   <div id='chart-container'>
+              <oj-chart 
+                  type="scatter" 
+                  selection-mode="multiple"
+                  data="[[dataProvider]]"
+                  animation-on-display="auto"
+                  hover-behavior="dim"
+                  style="max-width:800px;width:100%;height:350px;">
+          
+                  <template slot='itemTemplate' data-oj-as='item'>
+                      <oj-chart-item 
+                        x='[[item.data.x]]'
+                        y='[[item.data.y]]'
+						group-id='[[ [item.data.id] ]]'
+						series-id='[[item.data.series]]'> 
+                      </oj-chart-item>
+                  </template>
+              </oj-chart>
+   </div>
+
+</div>
